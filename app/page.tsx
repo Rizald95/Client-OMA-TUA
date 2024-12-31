@@ -7,12 +7,6 @@ import Footer from "@/components/Footer";
 import Testimonial from "@/components/Testimonial";
 import Maps from "@/components/Maps"
 
-const formatRupiah = (number: number): string => {
-  return new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-  }).format(number);
-};
 
 
 
