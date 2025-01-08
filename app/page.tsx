@@ -5,7 +5,8 @@ import { MenuFood } from "@/components/MenuFood"; // Import MenuFood
 import { MenuDrink } from "@/components/MenuDrink"; // Import MenuDrink
 import Footer from "@/components/Footer";
 import Testimonial from "@/components/Testimonial";
-import Maps from "@/components/Maps"
+import Maps from "@/components/Maps";
+import { SocialIcons } from "@/components/Icons";
 
 
 
@@ -89,7 +90,8 @@ export default function Home() {
             eating a large serving of fresh.
           </p>
         </div>
-
+ {/* Add the SocialIcons component here */}
+ <SocialIcons />
      {/* Section for Moments */}
 <div className="text-center max-w-8xl mx-auto mb-16"> {/* Ukuran kontainer diperbesar */}
   <h2 className="text-5xl font-serif text-[#C62300] mb-12">Captured Moments</h2> {/* Ukuran judul diperbesar */}
