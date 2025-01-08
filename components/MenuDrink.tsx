@@ -13,7 +13,9 @@ const drinkItems = [
     calories: "250 ML",
     portions: "1 gelas cup",
     price: 13000,
-    image: "/menu_minuman/matcha.jpg"
+    image: "/menu_minuman/matcha.jpg",
+    featured: true
+
   },
   {
     name: "Hazelnut Coffee",
