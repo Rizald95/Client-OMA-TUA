@@ -43,7 +43,8 @@ const foodItems = [
     calories: "180 kalori",
     portions: "1 porsi",
     price: 10000,
-    image: "/menu_makanan/makanan_6.png"
+    image: "/menu_makanan/makanan_6.png",
+    featured: true
   },
   {
     name: "French Fries",
