@@ -2,7 +2,6 @@ import Image from "next/image";
 import { formatRupiah } from "@/utils/formatRupiah";
 
 const foodItems = [
- 
   {
     name: "Nasi Goreng",
     calories: "300 kalori",
@@ -56,6 +55,13 @@ const foodItems = [
 ];
 
 export const MenuFood = () => {
+  const handleOrder = (item: typeof foodItems[number]) => {
+    const message = `Saya memesan 1 porsi ${item.name} dengan harga ${formatRupiah(item.price)}`;
+    const whatsappNumber = "6289688384475";
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappLink, "_blank");
+  };
+
   return (
     <div className="text-center mb-16">
       <h2 className="text-3xl md:text-4xl font-serif mb-6">Menu Makanan</h2>
@@ -65,7 +71,7 @@ export const MenuFood = () => {
             {foodItems.map((item) => (
               <div 
                 key={item.name} 
-                className={`flex-shrink-0 w-64 md:w-72 snap-start rounded-2xl p-6 ${item.featured ? "bg-[#C62300]" : "bg-white"}`}
+                className={`relative flex-shrink-0 w-64 md:w-72 snap-start rounded-2xl p-6 ${item.featured ? "bg-[#C62300]" : "bg-white"}`}
               >
                 <div className="aspect-square relative mb-4">
                   <Image src={item.image} alt={item.name} fill className="object-cover rounded-xl" />
@@ -79,6 +85,12 @@ export const MenuFood = () => {
                 <div className="text-left">
                   <span className="font-medium">{formatRupiah(item.price)}</span>
                 </div>
+                <button
+                  onClick={() => handleOrder(item)}
+                  className="absolute bottom-6 right-6 text-lg bg-transparent border border-gray-400 text-gray-700 w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100"
+                >
+                  +
+                </button>
               </div>
             ))}
           </div>

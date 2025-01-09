@@ -1,133 +1,23 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
-interface MapsProps {
-  apiKey: string;
-}
-
-const Maps: React.FC<MapsProps> = ({ apiKey }) => {
-  const mapContainerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const initMap = () => {
-      if (!mapContainerRef.current) return;
-
-      const location = { lat: -8.4796184, lng: 115.2013867 };
-
-      const map = new window.google.maps.Map(mapContainerRef.current, {
-        center: location,
-        zoom: 15,
-        styles: [
-          { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-          { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-          { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-          {
-            featureType: "administrative.locality",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#d59563" }],
-          },
-          {
-            featureType: "poi",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#d59563" }],
-          },
-          {
-            featureType: "poi.park",
-            elementType: "geometry",
-            stylers: [{ color: "#263c3f" }],
-          },
-          {
-            featureType: "poi.park",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#6b9a76" }],
-          },
-          {
-            featureType: "road",
-            elementType: "geometry",
-            stylers: [{ color: "#38414e" }],
-          },
-          {
-            featureType: "road",
-            elementType: "geometry.stroke",
-            stylers: [{ color: "#212a37" }],
-          },
-          {
-            featureType: "road",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#9ca5b3" }],
-          },
-          {
-            featureType: "road.highway",
-            elementType: "geometry",
-            stylers: [{ color: "#746855" }],
-          },
-          {
-            featureType: "road.highway",
-            elementType: "geometry.stroke",
-            stylers: [{ color: "#1f2835" }],
-          },
-          {
-            featureType: "road.highway",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#f3d19c" }],
-          },
-          {
-            featureType: "transit",
-            elementType: "geometry",
-            stylers: [{ color: "#2f3948" }],
-          },
-          {
-            featureType: "transit.station",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#d59563" }],
-          },
-          {
-            featureType: "water",
-            elementType: "geometry",
-            stylers: [{ color: "#17263c" }],
-          },
-          {
-            featureType: "water",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#515c6d" }],
-          },
-          {
-            featureType: "water",
-            elementType: "labels.text.stroke",
-            stylers: [{ color: "#17263c" }],
-          },
-        ],
-      });
-
-      new window.google.maps.Marker({
-        position: location,
-        map,
-        title: "Lokasi Tujuan",
-      });
-    };
-
-    if (typeof window !== "undefined" && !window.google) {
-      const script = document.createElement("script");
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
-      script.async = true;
-      script.defer = true;
-      script.onload = () => {
-        if (window.google) initMap();
-      };
-      document.head.appendChild(script);
-    } else if (window.google) {
-      initMap();
-    }
-  }, [apiKey]);
-
+const Maps: React.FC = () => {
   return (
     <div className="bg-gray-900 p-6 rounded-lg shadow-lg">
       <div className="relative">
-        <div 
-          ref={mapContainerRef} 
-          className="h-[400px] w-full rounded-lg overflow-hidden"
-        />
+        {/* Embed Google Maps menggunakan iframe */}
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.057943293204!2d112.9055567!3d-7.6459431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7c7006d77c5d3%3A0xf37e35b198fd03c3!2sOMA%20TUA.!5e0!3m2!1sid!2sid!4v1689863474535!5m2!1sid!2sid"
+          width="100%"
+          height="400"
+          style={{ border: 0 }}
+          allowFullScreen={true}
+          loading="lazy"
+          className="rounded-lg"
+        ></iframe>
+
+        {/* Bingkai dekoratif di atas peta */}
         <div className="absolute inset-0 pointer-events-none border-4 border-[#C62300] rounded-lg"></div>
       </div>
     </div>
@@ -135,4 +25,3 @@ const Maps: React.FC<MapsProps> = ({ apiKey }) => {
 };
 
 export default Maps;
-

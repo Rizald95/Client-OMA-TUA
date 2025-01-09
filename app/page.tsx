@@ -1,12 +1,15 @@
+"use client"; // Tambahkan ini di bagian atas
+
 import Image from "next/image";
-import { User } from 'lucide-react';  // Import ikon User dari lucide-react
-import { Button } from "@/components/ui/button";
+// import { User } from 'lucide-react';  // Import ikon User dari lucide-react
+// import { Button } from "@/components/ui/button";
 import { MenuFood } from "@/components/MenuFood"; // Import MenuFood
 import { MenuDrink } from "@/components/MenuDrink"; // Import MenuDrink
 import Footer from "@/components/Footer";
 import Testimonial from "@/components/Testimonial";
 import Maps from "@/components/Maps";
 import { SocialIcons } from "@/components/Icons";
+import { useRouter } from "next/navigation"
 
 
 
@@ -41,6 +44,7 @@ const moments = [
 ];
 
 export default function Home() {
+  const router = useRouter()
   return (
     <div className="min-h-screen bg-[#faf7f2]">
       <header className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -69,11 +73,17 @@ export default function Home() {
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="text-sm">Contact</button>
-          <Button variant="default" className="bg-black text-white rounded-full flex items-center gap-2">
-  <User className="w-4 h-4" />  {/* Ganti ikon ShoppingCart dengan User */}
-  Profile
-</Button>
+        <button
+    className="text-sm"
+    onClick={() => router.push("/user-profile")} // Navigasi ke halaman user-profile
+  >
+    Contact
+  </button>
+          <button
+          onClick={() => router.push("/profile")} // Navigasi ke halaman Profile
+          className="bg-black text-white rounded-full flex items-center gap-2 px-4 py-2">
+          Profile
+        </button>
         </div>
       </header>
 
@@ -149,8 +159,8 @@ export default function Home() {
         <MenuDrink />
 
         <h1 className="text-4xl font-serif text-center text-[#C62300] mt-16 mb-10">Our Location</h1>
-        <Maps apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''} />
-
+         {/* Gunakan komponen Maps */}
+         <Maps />
         <h1 className="text-4xl font-serif text-center text-[#C62300] mt-16 mb-10">Testimonials</h1>
         <Testimonial
           para="Kopi terbaik dengan suasana vintage yang menyenangkan. Saya sangat menyukainya!"
